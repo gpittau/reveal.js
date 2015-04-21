@@ -40,10 +40,6 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-		
-			
-
-			
 
 			</div>
 
@@ -53,9 +49,28 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
+
+		function getSearchParameters() {
+	      var prmstr = window.location.search.substr(1);
+	      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+		}
+
+		function transformToAssocArray( prmstr ) {
+		    var params = {};
+		    var prmarr = prmstr.split("&");
+		    for ( var i = 0; i < prmarr.length; i++) {
+		        var tmparr = prmarr[i].split("=");
+		        params[tmparr[0]] = tmparr[1];
+		    }
+		    return params;
+		}
+
 		$(document).ready(function(){
+			
+			var params = getSearchParameters();
+
 			$.ajax({
-			  url: "https://gist.githubusercontent.com/wzalazar/61268279629e5bd7ea4f/raw/4c564276a2ef24bb20a03f7c1403dc58b945edc6/README.md"
+			  url: params.gist
 			}).done(function(data) {
 				$('.slides').append(data);
 
