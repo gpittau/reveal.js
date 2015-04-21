@@ -41,24 +41,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 		
-				<section data-markdown>
-				    <script type="text/template">
-				        ## Page title
-
-				        A paragraph with some text and a [link](http://hakim.se).
-
-				        ## Page title
-
-				        A paragraph with some text and a [link](http://hakim.se).
-				    </script>
-				</section>
-
 			
-			<section data-markdown>
-				    <script type="text/template">
-				       
-				    </script>
-				</section>
 
 			
 
@@ -74,28 +57,28 @@
 			$.ajax({
 			  url: "https://gist.githubusercontent.com/wzalazar/61268279629e5bd7ea4f/raw/4c564276a2ef24bb20a03f7c1403dc58b945edc6/README.md"
 			}).done(function(data) {
-				console.log(data);
-			});
+				$('.slides').append(data);
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+				// Full list of configuration options available at:
+				// https://github.com/hakimel/reveal.js#configuration
+				Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+					center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+					transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
+					// Optional reveal.js plugins
+					dependencies: [
+						{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+						{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+						{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+						{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+						{ src: 'plugin/zoom-js/zoom.js', async: true },
+						{ src: 'plugin/notes/notes.js', async: true }
+					]
+				});
 			});
 		});
 
