@@ -66,36 +66,29 @@
 		    return params;
 		}
 
-		$(document).ready(function(){
-			
-			var params = getSearchParameters();
+		var params = getSearchParameters();
+		params.gist = params.gist?params.gist:'/README.md';
+		$.ajax({ url: params.gist }).done(function(data) {
+			$('.slides>section').append(data);
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
 
-			$.ajax({
-			  url: params.gist
-			}).done(function(data) {
-				$('.slides>section').append(data);
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				// Full list of configuration options available at:
-				// https://github.com/hakimel/reveal.js#configuration
-				Reveal.initialize({
-					controls: true,
-					progress: true,
-					history: true,
-					center: true,
-
-					transition: 'slide', // none/fade/slide/convex/concave/zoom
-
-					// Optional reveal.js plugins
-					dependencies: [
-						{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-						{ src: 'plugin/markdown/marked.js' },
-						{ src: 'plugin/markdown/markdown.js' },
-						{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-						{ src: 'plugin/zoom-js/zoom.js', async: true },
-						{ src: 'plugin/notes/notes.js', async: true }
-					]
-				});
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlighting(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
 			});
+			document.title = $('.reveal .slides section h1:first').text();
 		});
 
 
